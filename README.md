@@ -1,4 +1,4 @@
 # coffeine
 coffeine is all we need
 
-[game screenshot](images/screenshot.jpg)
+[game screenshot](http://imgur.com/a/bqWP4)
