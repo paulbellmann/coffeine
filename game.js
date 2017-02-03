@@ -57,7 +57,9 @@ var reset = function () {
 	// throw monster somewhere on the screen randomly
 	monster.x = (Math.random() * (canvas.width - 64));
 	monster.y = (Math.random() * (canvas.height - 64));
-	hero.speed = 256;
+	if (hero.speed != 512) {
+		hero.speed = 256;
+	}
 };
 
 var sugarSpawn = function () {
