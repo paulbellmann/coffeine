@@ -14,6 +14,10 @@ heroImage.src = "images/herp.png"
 var monsterImage = new Image();
 monsterImage.src = "images/mug.png"
 
+// sugar image
+var sugarImage = new Image();
+sugarImage.src = "images/sugar.png"
+
 // pop sound
 var audio = new Audio('sounds/pop.mp3');
 audio.volume = 0.2;
@@ -34,6 +38,11 @@ var monster = {
 };
 var monsterCaught = 0;
 
+var sugar = {
+	x: 0,
+	y: 0,
+}
+
 // handle keyboard controls
 var keysDown = {};
 addEventListener("keydown", function(e) {
@@ -48,12 +57,19 @@ var reset = function () {
 	// throw monster somewhere on the screen randomly
 	monster.x = (Math.random() * (canvas.width - 64));
 	monster.y = (Math.random() * (canvas.height - 64));
+	hero.speed = 256;
 };
+
+var sugarSpawn = function () {
+	sugar.x = (Math.random() * (canvas.width - 64));
+	sugar.y = (Math.random() * (canvas.height - 64));
+}
 
 var neustart = function () {
 	hero.x = canvas.width / 2;
 	hero.y = canvas.height / 2;
 	reset();
+	sugarSpawn();
 	monsterCaught = 0;
 	value = 100;
 	var keysDown = {};
@@ -92,6 +108,20 @@ var update = function (modifier) {
 		};
 		};
 
+	// sugar touching?
+	if (
+		hero.x <= (sugar.x + 32)
+		&& sugar.x <= (hero.x + 32)
+		&& hero.y <= (sugar.y + 32)
+		&& sugar.y <= (hero.y + 32)
+		) {
+		hero.speed = 512;
+		sugar.x = 1000;
+		sugar.y = 1000;
+		setTimeout(function(){ hero.speed = 256; }, 1000);
+		setTimeout(function(){ sugarSpawn(); }, 5000);
+	}
+
 	// rand nicht ueberqueren
 	if (hero.x >= 460) {	
 		hero.x = 460;
@@ -118,7 +148,7 @@ function PerformCalc() {
 		value -= increment
 		if (value == ceiling) {
 			//up = false;
-			// alert ("game over\nscore: " + monsterCaught);
+			//alert ("game over\nscore: " + monsterCaught);
 			neustart();
 		}}
 };
@@ -130,6 +160,7 @@ var render = function () {
 	ctx.drawImage(bgImage, 0, 0);
 	ctx.drawImage(heroImage, hero.x, hero.y);
 	ctx.drawImage(monsterImage, monster.x, monster.y)
+	ctx.drawImage(sugarImage, sugar.x, sugar.y)
 
 	// score
 	ctx.fillStyle = "rgb(250, 250, 250)";
@@ -161,4 +192,5 @@ requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame
 // start the game
 var then = Date.now();
 reset();
+sugarSpawn();
 main();
