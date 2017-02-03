@@ -8,7 +8,7 @@ bgImage.src = "images/bg.jpg";
 
 // hero image
 var heroImage = new Image();
-heroImage.src = "images/herp.png"
+heroImage.src = "images/heroNormal.png"
 
 // cup image
 var monsterImage = new Image();
@@ -50,6 +50,7 @@ addEventListener("keydown", function(e) {
 }, false);
 addEventListener("keyup", function (e) {
 	delete keysDown[e.keyCode];
+	heroImage.src = "images/heroNormal.png"
 }, false);
 
 // reset the game when player catches a monster
@@ -81,15 +82,19 @@ var neustart = function () {
 var update = function (modifier) {
 	if (38 in keysDown || 87 in keysDown) { // Player holding up
 		hero.y -= hero.speed * modifier;
+		heroImage.src = "images/heroUp.png"
 	}
 	if (40 in keysDown || 83 in keysDown) { // Player holding down
 		hero.y += hero.speed * modifier;
+		heroImage.src = "images/heroDown.png"
 	}
 	if (37 in keysDown || 65 in keysDown) { // Player holding left
 		hero.x -= hero.speed * modifier;
+		heroImage.src = "images/heroLeft.png"
 	}
 	if (39 in keysDown || 68 in keysDown) { // Player holding right
 		hero.x += hero.speed * modifier;
+		heroImage.src = "images/heroRight.png"
 	}
 	if (13 in keysDown) {
 		neustart();
