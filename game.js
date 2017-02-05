@@ -22,6 +22,10 @@ sugarImage.src = "images/sugar.png"
 var audio = new Audio('sounds/pop.mp3');
 audio.volume = 0.2;
 
+var backgroundAudio = new Audio ('sounds/background.mp3');
+backgroundAudio.volume = 0.3;
+var backgroundAudioOn = true;
+
 // tired level bar
 var bar = document.getElementById('bar');
 bar.style.backgroundColor = 'red';
@@ -98,6 +102,9 @@ var update = function (modifier) {
 	}
 	if (13 in keysDown) {
 		neustart();
+	}
+	if (77 in keysDown) {
+		backgroundAudio.volume = 0;
 	}
 
 	// Are they touching?
@@ -185,6 +192,7 @@ var main = function () {
 
 	update(delta / 1000);
 	render();
+	backgroundAudio.play()
 
 	then = now;
 
