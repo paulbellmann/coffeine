@@ -162,7 +162,7 @@ function PerformCalc() {
 		value -= increment
 		if (value == ceiling) {
 			//up = false;
-			//alert ("game over\nscore: " + monsterCaught);
+			alert ("game over\nscore: " + monsterCaught);
 			neustart();
 		}}
 };
