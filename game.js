@@ -2,7 +2,7 @@
 var canvas = document.getElementById('game');
 var ctx = canvas.getContext("2d");
 
-// background image
+// background image test
 var bgImage = new Image();
 bgImage.src = "images/bg.jpg";
 
