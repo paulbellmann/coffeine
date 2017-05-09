@@ -16,7 +16,7 @@ var app = express();
 // needed for socket.io
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-server.listen(3000, "192.168.214.59")
+server.listen(3000, "127.0.0.1")
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

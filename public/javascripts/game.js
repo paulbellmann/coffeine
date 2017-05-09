@@ -158,7 +158,7 @@ var value = 100;
 var increment = 10;
 var ceiling = 0;
 
-var socket = io.connect('192.168.214.59:3000');
+var socket = io.connect('127.0.0.1:3000');
 
 function PerformCalc() {
 	if (up == true && value >= ceiling) {
