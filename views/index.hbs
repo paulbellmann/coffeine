@@ -1,0 +1,11 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+<script>
+  var socket = io.connect('127.0.0.1:3000');
+  // socket.on('news', function (data) {
+  //   //console.log(data);
+  //   socket.emit('my other event', { my: 'test' });
+  // });
+  socket.emit('myEvent', {my: 'test'});
+</script>
