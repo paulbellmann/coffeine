@@ -3,6 +3,7 @@ import Player from './player'
 import Sugar from './sugar'
 import Mug from './mug'
 import Ui from './ui'
+import Highscore from './highscore'
 import backgroundMusic from '../sounds/background.mp3'
 import popSound from '../sounds/pop.mp3'
 
@@ -30,6 +31,8 @@ class Game {
 
         this.popSound = new Audio(popSound)
         this.popSound.volume = .2
+
+        this.highscore = new Highscore()
     }
 
     render() {
@@ -38,6 +41,7 @@ class Game {
         this.sugar.render()
         this.mug.render()
         this.ui.render(this.coffeeCounter, this.score)
+        this.highscore.render()
     }
 
     update() {
@@ -70,6 +74,8 @@ class Game {
     }
 
     reset() {
+        this.highscore.setHighscore(this.coffeeCounter)
+
         this.score = 10
         this.coffeeCounter = 0
         this.player.x = 200

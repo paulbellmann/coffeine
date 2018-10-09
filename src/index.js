@@ -9,4 +9,12 @@ const main = () => {
     window.requestAnimationFrame(main)
 }
 
+const init = () => {
+    const canvas = document.querySelector('#game')
+
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+}
+
+init()
 main()
