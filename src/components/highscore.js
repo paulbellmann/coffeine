@@ -20,7 +20,7 @@ class Highscore extends GameObject {
     }
 
     drawTable() {
-        this.ctx.clearRect(550, 100, 500, 1000)
+        //this.ctx.clearRect(550, 100, 500, 1000)
         this.ctx.fillStyle = 'rgb(0, 0, 0)'
         this.ctx.font = '24px Helvetica'
         this.ctx.textAlign = 'left'
