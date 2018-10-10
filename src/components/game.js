@@ -6,9 +6,12 @@ import Ui from './ui'
 import Highscore from './highscore'
 import backgroundMusic from '../sounds/background.mp3'
 import popSound from '../sounds/pop.mp3'
+import GameObject from './gameObject'
 
-class Game {
+class Game extends GameObject {
     constructor() {
+        super()
+
         this.map = new Map()
         this.player = new Player({
             x: 200,
@@ -36,6 +39,7 @@ class Game {
     }
 
     render() {
+        this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
         this.map.render()
         this.player.render()
         this.sugar.render()
