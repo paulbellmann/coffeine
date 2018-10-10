@@ -1,7 +1,7 @@
 # coffeine
 coffee is all we need
 
-![game screenshot](http://i.imgur.com/Trl4RfB.jpg)
+![game screenshot](./src/images/screenshot.png)
 
 ## Development
 
