@@ -4,9 +4,12 @@ import Sugar from './sugar'
 import Mug from './mug'
 import Ui from './ui'
 import Highscore from './highscore'
+import GameObject from './gameObject'
+
 import backgroundMusic from '../sounds/background.mp3'
 import popSound from '../sounds/pop.mp3'
-import GameObject from './gameObject'
+import boostSound from '../sounds/boost.mp3'
+import gameOverSound from '../sounds/game-over.mp3'
 
 class Game extends GameObject {
     constructor() {
@@ -17,6 +20,7 @@ class Game extends GameObject {
             x: 200,
             y: 200,
         })
+        this.highscore = new Highscore()
         this.sugar = new Sugar()
         this.mug = new Mug()
         this.ui = new Ui()
@@ -28,14 +32,21 @@ class Game extends GameObject {
 
         this.coffeeCounter = 0
 
+
+        // sounds
         this.backgroundMusic = new Audio(backgroundMusic)
         this.backgroundMusic.volume = .3
+        this.backgroundMusic.loop = true
         this.backgroundMusic.play()
 
         this.popSound = new Audio(popSound)
         this.popSound.volume = .2
 
-        this.highscore = new Highscore()
+        this.boostSound = new Audio(boostSound)
+        this.boostSound.volume = .2
+
+        this.gameOverSound = new Audio(gameOverSound)
+        this.gameOverSound.volume = .2
     }
 
     render() {
@@ -72,12 +83,14 @@ class Game extends GameObject {
         ) {
             this.sugar.respawn()
             this.player.boost()
+            this.boostSound.play()
         }
 
         if (this.score <= 0) this.reset()
     }
 
     reset() {
+        this.gameOverSound.play()
         this.highscore.setHighscore(this.coffeeCounter)
 
         this.score = 10
